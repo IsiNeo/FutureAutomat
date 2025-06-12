@@ -112,13 +112,20 @@ def svg_to_base64_image(path):
             svg_content = f.read()
         return f"data:image/svg+xml;base64,{base64.b64encode(svg_content.encode()).decode()}"
     except Exception:
-        # Fallback: THA_Logo.svg als Ersatz
-        with open("Assets/Optionen/THA_Logo.svg", "r") as f:
+        # Fallback: Logo.svg als Ersatz
+        with open("Assets/Logo.svg", "r") as f:
             fallback_svg = f.read()
         return f"data:image/svg+xml;base64,{base64.b64encode(fallback_svg.encode()).decode()}"
 
 
 st.set_page_config(page_title="Zukunftsgenerator", layout="wide")
+
+# Style
+with open("Assets/Fonts/stylesheet.css") as f:
+    css = f.read()
+
+# Inject the CSS into the app
+st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
 
 # Globales CSS: schwarzer Hintergrund & oranger Button
 st.markdown("""
@@ -128,6 +135,11 @@ st.markdown("""
             background-position: center 25vh;  
             color: white;
             height: 100vh;
+            font-family: 'sf_compact_displaymedium';
+        }
+        
+        body, .stApp {
+            background-color: black;
         }
 
         [data-testid="stSidebar"] {
@@ -149,8 +161,8 @@ st.markdown("""
             justify-content: center;
         }
         .button-spacer-bottom {
-            margin-top: 2vh;
-            margin-bottom: 17vh;
+            margin-top: 0vh;
+            margin-bottom: 13vh;
             display: flex;
             justify-content: center;
         }
@@ -314,24 +326,20 @@ def frage_seite(frage_nummer, frage_text, optionen, fragen_keys):
                     else:
                         st.session_state.page = "generierung"
                     st.rerun()
-    svg_path_ladebalken = "Assets/Optionen/ladebalken_" + frage_nummer
-    st.write("svg_path_ladebalken =" + svg_path_ladebalken)
+    svg_path_ladebalken = "Assets/Ladebalken/" + frage_nummer + ".svg"
     svg_path_ladebalken = svg_to_base64_image(svg_path_ladebalken)
     st.markdown(f"""
-        <div class="option-container">
-            <div class='svg-wrapper'>
-                <img src="{svg_path_ladebalken}" style="max-width: 100%; max-height: 100%;" />
-            </div>
+        <div class='center-wrapper' style="margin-top: 8vh;">
+            [FUTURE IS LOADING ... ]
+            <img src="{svg_path_ladebalken}" style="max-width: 60vw" />
         </div>
     """, unsafe_allow_html=True)
-    data_svg_logo = svg_to_base64_image("Assets/Optionen/logo")
+    data_svg_logo = svg_to_base64_image("Assets/Logo.svg")
     st.markdown(f"""
-                    <div class="option-container">
-                        <div class='svg-wrapper'>
-                            <img src="{data_svg_logo}" style="max-width: 100%; max-height: 100%;" />
-                        </div>
-                    </div>
-                """, unsafe_allow_html=True)
+        <div class='center-wrapper'>
+            <img src="{data_svg_logo}" style="max-width: 5vh" />
+        </div>
+        """, unsafe_allow_html=True)
 
 
 

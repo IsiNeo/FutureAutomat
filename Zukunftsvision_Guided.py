@@ -20,7 +20,7 @@ import time
 
 ### API ###
 load_dotenv()
-genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
+genai.configure(api_key=st.secrets["google"]["GOOGLE_API_KEY"])
 model = genai.GenerativeModel("gemini-2.5-flash-preview-05-20")
 
 ### Datenbank ###

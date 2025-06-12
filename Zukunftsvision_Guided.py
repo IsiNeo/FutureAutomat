@@ -78,9 +78,6 @@ fragen = {
          "Assets/Optionen/F6_Opti3.svg", "Greenwashing")
     ])
 }
-zusatzfaktoren = ["Dabei hat leider eine Revolution die Zukunft verändert und es gibt nun eine Militärelite.",
-                  "Leider ist die Umweltverschmutzung deutlich schlimmer als geplant und ein Leben ohne Schutzausrüstung nicht mehr möglich.",
-                  "Leider brechen reglmäßig globale Pandemien aus und es müssen harsche Vorkehrungen dagegen getroffen werden. Passe die Zukunft daran an."]
 
 # Tabelle anlegen, falls nicht existient
 c.execute('''
@@ -347,7 +344,7 @@ if "antworten" not in st.session_state:
 
 # --- STARTSEITE ---
 if st.session_state.page == "start":
-    set_png_as_page_bg("Assets/Form_base64.txt")
+    set_png_as_page_bg("Assets/Form_Base64.txt")
     st.markdown("""
     <style>
     div[data-testid="stVerticalBlock"] > div {
@@ -389,8 +386,6 @@ elif st.session_state.page == "generierung":
     </div>
     """, unsafe_allow_html=True)
     # st.write(st.session_state.antworten)
-    zufall_trigger = random.random() < 0.3
-    zufall_auswahl = random.choice(zusatzfaktoren) if zufall_trigger else None
 
     prompt = (
         f"Beschreibe in unter 150 Wörtern eine Zukunft, in der die Welt durch {st.session_state.antworten["frage1"]}"
@@ -399,10 +394,6 @@ elif st.session_state.page == "generierung":
         f"Innovationen {st.session_state.antworten["frage5"]} sind und die Ökologie als "
         f"{st.session_state.antworten["frage6"]} betrachtet wird."
     )
-
-    # Wildcard
-    """if zufall_auswahl:
-        prompt += f" {zufall_auswahl}."""
 
     try:
         response = model.generate_content(prompt)

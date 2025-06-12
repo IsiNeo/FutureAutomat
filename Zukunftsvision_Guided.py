@@ -153,7 +153,14 @@ st.markdown("""
             height: 11vw;
             min-height: 100px;
         }
-
+        
+        #ueberschrift{
+            font-family: 'chonkypixelsmedium';
+            text-transform: uppercase;
+            font-size: 7vh;
+            text-align: left;
+        }
+        
         .button-spacer-top {
             margin-top: 14vh;
             margin-bottom: 1vh;
@@ -358,13 +365,15 @@ if st.session_state.page == "start":
     div[data-testid="stVerticalBlock"] > div {
         text-align: center;
     }
-
     </style>
     """, unsafe_allow_html=True)
+
+
 
     with open("Assets/Future_Automat.png", "rb") as img_file:
         b64_img = base64.b64encode(img_file.read()).decode()
     st.markdown(f'<img src="data:image/png;base64,{b64_img}" class="header-img" />', unsafe_allow_html=True)
+    #st.markdown('<div id="ueberschrift"> FUTURE<span style="font-size: 4.0em; color: #A00;">.</span> <br> AUTOMAT', unsafe_allow_html=True)
     st.markdown('<div class="button-spacer-top">', unsafe_allow_html=True)
     if st.button("Generiere deine Zukunft", type="primary"):
         st.session_state.page = "frage1"

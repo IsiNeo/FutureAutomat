@@ -368,7 +368,9 @@ if st.session_state.page == "start":
 
     st.markdown(f"""
         <div class="footer-text">
-            Generiere deine eigene Zukunft. Alles hängt von deinen Entscheidungen ab... oder etwa nicht?
+            [SYSTEM BOOTING...] _ Zukunftsmodul aktiviert. Willkommen im Future Automat!<br><br>
+             In wenigen Schritten wirst du grundlegende Entscheidungen treffen zu Politik, Technologie, Arbeit, Umwelt und Zusammenleben.<br>
+            Aus deinen Antworten entsteht ein mögliches Zukunftsszenario. 
         </div>
     """, unsafe_allow_html=True)
 

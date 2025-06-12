@@ -20,7 +20,7 @@ import time
 
 ### API ###
 load_dotenv()
-genai.configure(api_key=st.secrets["google"]["GOOGLE_API_KEY"])
+#genai.configure(api_key=st.secrets["google"]["GOOGLE_API_KEY"])
 model = genai.GenerativeModel("gemini-2.5-flash-preview-05-20")
 
 ### Datenbank ###
@@ -137,7 +137,7 @@ st.markdown("""
             height: 100vh;
             font-family: 'sf_compact_displaymedium';
         }
-        
+
         body, .stApp {
             background-color: black;
         }
@@ -153,14 +153,14 @@ st.markdown("""
             height: 11vw;
             min-height: 100px;
         }
-        
+
         #ueberschrift{
             font-family: 'chonkypixelsmedium';
             text-transform: uppercase;
             font-size: 7vh;
             text-align: left;
         }
-        
+
         .button-spacer-top {
             margin-top: 14vh;
             margin-bottom: 1vh;
@@ -188,8 +188,8 @@ st.markdown("""
             width: 30vw;
             text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8);
         }
-    
-        
+
+
         /* Option Buttons größer und vertikal zentriert */
         button[kind="secondary"] {
             display: inline-block;
@@ -231,7 +231,7 @@ st.markdown("""
             margin-left: auto;
             margin-right: auto;
         }
-        
+
         .frage-box {
             background-color: #fd4825;
             color: white;
@@ -244,7 +244,7 @@ st.markdown("""
             width: fit-content;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
-        
+
         .option-container {
             display: flex;
             flex-direction: column;
@@ -256,7 +256,7 @@ st.markdown("""
             margin: 0 auto;
             margin-bottom: 0.4vh;
         }
-        
+
         .svg-wrapper {
             background-color: white;
             border: 2px solid white;
@@ -269,7 +269,7 @@ st.markdown("""
             padding: 10%;
             margin-bottom: 1rem;
         }
-        
+
         .svg-wrapper svg {
             max-width: 100%;
             max-height: 100%;
@@ -349,8 +349,6 @@ def frage_seite(frage_nummer, frage_text, optionen, fragen_keys):
         """, unsafe_allow_html=True)
 
 
-
-
 if "page" not in st.session_state:
     st.session_state.page = "start"
 
@@ -368,12 +366,10 @@ if st.session_state.page == "start":
     </style>
     """, unsafe_allow_html=True)
 
-
-
     with open("Assets/Future_Automat.png", "rb") as img_file:
         b64_img = base64.b64encode(img_file.read()).decode()
     st.markdown(f'<img src="data:image/png;base64,{b64_img}" class="header-img" />', unsafe_allow_html=True)
-    #st.markdown('<div id="ueberschrift"> FUTURE<span style="font-size: 4.0em; color: #A00;">.</span> <br> AUTOMAT', unsafe_allow_html=True)
+    # st.markdown('<div id="ueberschrift"> FUTURE<span style="font-size: 4.0em; color: #A00;">.</span> <br> AUTOMAT', unsafe_allow_html=True)
     st.markdown('<div class="button-spacer-top">', unsafe_allow_html=True)
     if st.button("Generiere deine Zukunft", type="primary"):
         st.session_state.page = "frage1"
@@ -423,7 +419,3 @@ elif st.session_state.page == "generierung":
         st.session_state.page = "start"
         st.session_state.antworten = {}
         st.rerun()
-
-
-
-
